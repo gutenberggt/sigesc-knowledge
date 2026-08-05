@@ -2,7 +2,7 @@
 
 Todas as mudanças relevantes da governança e da estrutura do SIGESC Knowledge Framework serão registradas neste arquivo.
 
-## [1.0.0] — Em preparação
+## [1.0.0] — 2026-08-05
 
 ### Adicionado
 

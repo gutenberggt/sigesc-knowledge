@@ -7,10 +7,10 @@
 - [x] normalizar a estrutura principal;
 - [x] catalogar a primeira fonte;
 - [x] configurar UTF-8 e finais de linha;
-- [ ] aprovar `SKF-0000`;
-- [ ] validar padrões;
-- [ ] realizar commit da fundação;
-- [ ] abrir revisão e integrar à branch principal.
+- [x] aprovar `SKF-0000`;
+- [x] validar padrões;
+- [x] realizar commit da fundação;
+- [x] abrir revisão e integrar à branch principal.
 
 ## Ciclo 1 — Primeiro dossiê
 
