@@ -5,7 +5,7 @@
 | Campo | Valor |
 |---|---|
 | Dossiê | `MEC-API-0001` |
-| Estado | Em elaboração |
+| Estado | Ficha técnica concluída |
 | Classificação predominante | `FD` — fonte direta |
 | Última revisão | 2026-08-05 |
 

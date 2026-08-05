@@ -6,7 +6,7 @@
 |---|---|
 | Dossiê | `MEC-API-0001` |
 | Fonte | Cartilha de Uso da API – Sistema Gestão Presente [nova versão] |
-| Estado | Glossário analítico em elaboração |
+| Estado | Glossário analítico concluído; promoção pendente |
 | Última revisão | 2026-08-05 |
 
 ## Critério editorial
