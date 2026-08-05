@@ -99,15 +99,15 @@ Durante a homologação, as equipes devem registrar observações, respostas ine
 
 ## Pontos a confirmar
 
-| ID | Ponto | Motivo |
+| Referências consolidadas | Ponto | Motivo |
 |---|---|---|
-| `PC-MEC-API-0001-001` | Rota, payload e resposta da autenticação | A cartilha menciona a rota de autenticação, mas não apresenta seu contrato. |
-| `PC-MEC-API-0001-002` | Regra vigente de expiração e renovação do token | A validade é descrita como “atual: 5 minutos”. |
-| `PC-MEC-API-0001-003` | Esquemas completos de requisição e resposta | A cartilha remete ao Swagger e ao Redoc. |
-| `PC-MEC-API-0001-004` | Parâmetros de filtro, ordenação e paginação | A fonte recomenda testá-los, mas não define seus contratos. |
-| `PC-MEC-API-0001-005` | Conjunto completo de módulos e rotas disponíveis | A cartilha descreve apenas módulos disponíveis para homologação naquele contexto. |
-| `PC-MEC-API-0001-006` | Processo operacional de credenciamento e uso da chave PGP | A fonte informa o canal de contato, mas não detalha o procedimento técnico completo. |
-| `PC-MEC-API-0001-007` | Política de versionamento e compatibilidade da API | Não há regra de versionamento ou de descontinuação na cartilha. |
+| Ver `PC-MEC-API-0001-001`, `PC-MEC-API-0001-002` e `PC-MEC-API-0001-003` | Rota, payload e resposta da autenticação | A cartilha menciona a rota de autenticação, mas não apresenta seu contrato. |
+| Ver `PC-MEC-API-0001-004` e `PC-MEC-API-0001-005` | Regra vigente de expiração e renovação do token | A validade é descrita como “atual: 5 minutos”. |
+| Ver `PC-MEC-API-0001-008`, `PC-MEC-API-0001-009`, `PC-MEC-API-0001-011` a `PC-MEC-API-0001-015` | Esquemas completos de requisição e resposta | A cartilha remete ao Swagger e ao Redoc. |
+| Ver `PC-MEC-API-0001-016` e `PC-MEC-API-0001-017` | Parâmetros de filtro, ordenação e paginação | A fonte recomenda testá-los, mas não define seus contratos. |
+| Ver `PC-MEC-API-0001-013` a `PC-MEC-API-0001-015` | Conjunto completo de módulos e rotas disponíveis | A cartilha descreve apenas módulos disponíveis para homologação naquele contexto. |
+| Ver `PC-MEC-API-0001-019` | Processo operacional de credenciamento e uso da chave PGP | A fonte informa o canal de contato, mas não detalha o procedimento técnico completo. |
+| Ver `PC-MEC-API-0001-008` | Política de versionamento e compatibilidade da API | Não há regra de versionamento ou de descontinuação na cartilha. |
 
 **Classificação:** `PC`.
 
