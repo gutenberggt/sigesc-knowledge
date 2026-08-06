@@ -14,11 +14,15 @@
 
 ## Ciclo 1 — Primeiro dossiê
 
-- [ ] revisar os artefatos de `MEC-API-0001`;
-- [ ] remover marcações não portáveis;
-- [ ] uniformizar identificadores;
-- [ ] publicar os arquivos `00` a `15`;
-- [ ] validar links, terminologia e citações.
+- [x] revisar os artefatos de `MEC-API-0001`;
+- [x] remover marcações não portáveis;
+- [x] uniformizar identificadores;
+- [x] publicar os arquivos `00` a `15`;
+- [x] validar links, terminologia e citações.
+
+**Encerramento:** concluído em 2026-08-05 pelo merge da PR #3 na `main`.
+
+**Resultado consolidado:** 17 arquivos, 27 namespaces, 451 identificadores declarados, auditoria final `PASS`, produção bloqueada e zero evidências operacionais.
 
 ## Ciclo 2 — Qualidade e automação
 

@@ -18,7 +18,9 @@
 - `MEC-API-0001` — Cartilha de Uso da API – Sistema Gestão Presente [nova versão]
   - Fonte: `01-fontes/mec/gestao-presente/api/MEC-API-0001/`
   - Dossiê: `02-dossies/MEC-API-0001/`
-  - Situação: fonte catalogada; dossiê em migração
+  - Situação: fonte catalogada; dossiê concluído e integrado à `main` pela PR #3
+  - Estado técnico: análise documental concluída; contrato técnico incompleto; homologação pendente; produção bloqueada
+  - Indicadores: 17 arquivos; 27 namespaces; 451 identificadores; 0 evidências operacionais
 
 ## Inventário histórico
 
