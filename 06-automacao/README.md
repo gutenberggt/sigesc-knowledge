@@ -9,6 +9,7 @@ Scripts, validadores e templates usados para manter o SIGESC Knowledge Framework
 ├── README.md
 ├── scripts/
 │   ├── validate-catalog.ps1
+│   ├── validate-links.ps1
 │   └── validate-structure.ps1
 └── templates/
 ```
@@ -217,4 +218,120 @@ Avisos não alteram o código de sucesso quando não existem falhas.
 - o catálogo mestre não é modificado durante a validação;
 - cada diagnóstico informa nível, código e descrição;
 - o resumo final informa total de verificações, erros, avisos e resultado;
+- o arquivo segue a política de final de linha `CRLF` para scripts PowerShell.
+
+## Verificador de links
+
+### Arquivo
+
+```text
+06-automacao/scripts/validate-links.ps1
+```
+
+### Objetivo
+
+Verificar a integridade, a portabilidade e a resolução dos links presentes nos
+arquivos Markdown do repositório, sem alterar o corpus e sem depender da
+disponibilidade de serviços externos.
+
+### Compatibilidade
+
+- Windows PowerShell 5.1;
+- execução a partir de uma cópia local do repositório;
+- nenhuma dependência externa além de Git e PowerShell;
+- operação somente leitura;
+- modo padrão determinístico, sem requisições de rede.
+
+### Escopo padrão
+
+Sem parâmetros adicionais, o verificador examina todos os arquivos `*.md`
+rastreados pelo Git.
+
+O parâmetro `-MarkdownPath` permite restringir a execução a um arquivo Markdown
+ou a um diretório. Esse modo também pode ser usado para validar artefatos em
+revisão antes de serem adicionados ao índice do Git.
+
+### Verificações
+
+O verificador verifica:
+
+- codificação UTF-8 dos arquivos Markdown selecionados;
+- links e imagens Markdown inline;
+- definições e usos de referências Markdown;
+- referências não resolvidas e definições duplicadas;
+- autolinks e URLs HTTP ou HTTPS expostas no texto;
+- existência de arquivos e diretórios locais;
+- correspondência exata de maiúsculas e minúsculas nos caminhos;
+- resolução dos caminhos dentro da raiz do repositório;
+- rejeição de links locais iniciados por `/`;
+- rejeição de caminhos absolutos e destinos não portáveis;
+- rejeição de esquemas de URI não suportados;
+- validação sintática de destinos `mailto:` e `tel:`;
+- existência de fragmentos em títulos Markdown ou IDs HTML explícitos;
+- desambiguação de títulos repetidos por sufixos numéricos;
+- blocos de código cercados não encerrados;
+- candidatos a link Markdown que não puderam ser interpretados.
+
+Blocos de código cercados e trechos de código inline são ignorados durante a
+extração dos links.
+
+### Política para links externos
+
+Destinos HTTP e HTTPS são validados sintaticamente, mas não são consultados pela
+rede no modo determinístico. Essa decisão evita falhas instáveis causadas por
+indisponibilidade temporária, redirecionamentos, proteção antirrobô ou limitação
+de requisições.
+
+### Execução
+
+Na raiz do repositório:
+
+```powershell
+powershell.exe `
+    -NoProfile `
+    -ExecutionPolicy Bypass `
+    -File "06-automacao\scripts\validate-links.ps1" `
+    -Root (Get-Location).Path
+```
+
+Para validar somente um arquivo:
+
+```powershell
+powershell.exe `
+    -NoProfile `
+    -ExecutionPolicy Bypass `
+    -File "06-automacao\scripts\validate-links.ps1" `
+    -Root (Get-Location).Path `
+    -MarkdownPath "02-dossies\MEC-API-0001\README.md"
+```
+
+Para validar recursivamente um diretório:
+
+```powershell
+powershell.exe `
+    -NoProfile `
+    -ExecutionPolicy Bypass `
+    -File "06-automacao\scripts\validate-links.ps1" `
+    -Root (Get-Location).Path `
+    -MarkdownPath "02-dossies"
+```
+
+### Códigos de saída
+
+| Código | Significado |
+|---:|---|
+| `0` | links válidos, sem falhas |
+| `1` | uma ou mais violações do contrato |
+| `2` | erro de execução do verificador |
+
+Avisos não alteram o código de sucesso quando não existem falhas.
+
+### Garantias operacionais
+
+- o script não cria, altera, move ou remove conteúdo do repositório;
+- nenhuma requisição de rede é executada no modo determinístico;
+- nenhuma mutação Git é realizada;
+- cada diagnóstico informa nível, código e descrição;
+- o resumo final informa arquivos, destinos, verificações, erros, avisos e
+  resultado;
 - o arquivo segue a política de final de linha `CRLF` para scripts PowerShell.
