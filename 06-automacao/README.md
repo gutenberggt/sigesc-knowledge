@@ -12,9 +12,28 @@ Scripts, validadores e templates usados para manter o SIGESC Knowledge Framework
 │   ├── validate-links.ps1
 │   └── validate-structure.ps1
 └── templates/
+    └── dossie/
+        ├── README.md
+        ├── 00-ficha-tecnica.md
+        ├── 01-resumo-executivo.md
+        ├── 02-estrutura-documento.md
+        ├── 03-glossario.md
+        ├── 04-regras-e-restricoes.md
+        ├── 05-requisitos-funcionais.md
+        ├── 06-requisitos-nao-funcionais.md
+        ├── 07-casos-de-uso.md
+        ├── 08-fluxos-operacionais.md
+        ├── 09-modelo-de-dados.md
+        ├── 10-perfis-e-permissoes.md
+        ├── 11-integracoes.md
+        ├── 12-impacto-no-sigesc.md
+        ├── 13-oportunidades-de-melhoria.md
+        ├── 14-rastreabilidade.md
+        └── 15-notas.md
 ```
 
-O diretório `templates/` é reservado para modelos reutilizáveis e somente será versionado quando receber conteúdo.
+O diretório `templates/` contém modelos operacionais reutilizáveis. O template
+canônico de dossiê está em `templates/dossie/`.
 
 ## Restrições
 
@@ -335,3 +354,92 @@ Avisos não alteram o código de sucesso quando não existem falhas.
 - o resumo final informa arquivos, destinos, verificações, erros, avisos e
   resultado;
 - o arquivo segue a política de final de linha `CRLF` para scripts PowerShell.
+## Template canônico de dossiê
+
+### Diretório
+
+[`06-automacao/templates/dossie/`](templates/dossie/README.md)
+
+### Objetivo
+
+Padronizar a criação de novos dossiês analíticos sem copiar conteúdo específico
+de uma fonte existente e sem transformar um dossiê anterior em modelo implícito.
+
+O template materializa a sequência canônica composta por `README.md` e pelos
+artefatos numerados de `00` a `15`.
+
+### Contrato editorial
+
+O template segue estas regras:
+
+- cada arquivo Markdown possui exatamente um título de primeiro nível;
+- os arquivos usam UTF-8 sem BOM e finais de linha LF;
+- campos variáveis usam placeholders em maiúsculas e `snake_case`, no formato
+  `{{PLACEHOLDER_NAME}}`;
+- `{{DOSSIER_ID}}` identifica o dossiê em todos os artefatos;
+- identificadores exemplificativos seguem o padrão
+  `<NAMESPACE>-{{DOSSIER_ID}}-NNN`;
+- as classificações `FD`, `DE`, `PA` e `PC` preservam a distinção entre fonte
+  direta, derivação de engenharia, proposta arquitetural e ponto a confirmar;
+- conteúdo específico de fontes, órgãos, contratos, credenciais e ambientes
+  reais não pertence ao template;
+- referências não portáveis, caminhos absolutos e identificadores temporários
+  não devem ser introduzidos;
+- linhas de exemplo e seções não aplicáveis devem ser removidas ou adaptadas
+  durante a instanciação.
+
+Os namespaces presentes no template demonstram o contrato disponível. A
+presença de um namespace no modelo não obriga seu uso em todos os dossiês.
+
+### Artefatos
+
+| Arquivo | Finalidade |
+|---|---|
+| `README.md` | Porta de entrada, estado consolidado e orientação de uso. |
+| `00-ficha-tecnica.md` | Identificação, origem, integridade, escopo e limitações. |
+| `01-resumo-executivo.md` | Síntese executiva, determinações, impactos e pendências. |
+| `02-estrutura-documento.md` | Mapeamento estrutural da fonte analisada. |
+| `03-glossario.md` | Termos, definições, classificações e referências. |
+| `04-regras-e-restricoes.md` | Regras, restrições e limites extraídos. |
+| `05-requisitos-funcionais.md` | Requisitos funcionais derivados e seu estado. |
+| `06-requisitos-nao-funcionais.md` | Requisitos de qualidade, segurança e operação. |
+| `07-casos-de-uso.md` | Atores, casos de uso e objetivos. |
+| `08-fluxos-operacionais.md` | Fluxos identificados e derivados. |
+| `09-modelo-de-dados.md` | Elementos, relações e mapeamentos conceituais. |
+| `10-perfis-e-permissoes.md` | Atores, perfis, permissões e lacunas de autorização. |
+| `11-integracoes.md` | Sistemas, interfaces, rotas, dependências e pontos a confirmar. |
+| `12-impacto-no-sigesc.md` | Impactos, GAPs, decisões e gates para o SIGESC. |
+| `13-oportunidades-de-melhoria.md` | Oportunidades, prioridades e critérios de avaliação. |
+| `14-rastreabilidade.md` | Cobertura e cadeias de rastreabilidade ponta a ponta. |
+| `15-notas.md` | Pendências, premissas, ressalvas e gatilhos de revisão. |
+
+### Instanciação
+
+A criação de um dossiê a partir deste modelo é deliberadamente manual nesta
+versão do SKF. O Ciclo 2 não introduz gerador, Builder ou automação de promoção.
+
+A instanciação deve:
+
+1. copiar o conteúdo completo do template para `02-dossies/{{DOSSIER_ID}}`;
+2. substituir os placeholders pelos valores da nova fonte e do novo dossiê;
+3. remover exemplos e seções que não se aplicam;
+4. preservar a classificação das afirmações e a rastreabilidade;
+5. validar o novo dossiê antes do staging e da revisão.
+
+### Validação
+
+Antes de integrar um dossiê instanciado, execute os validadores de estrutura e
+links. Para validar apenas o novo dossiê antes de adicioná-lo ao índice Git:
+
+```powershell
+powershell.exe `
+    -NoProfile `
+    -ExecutionPolicy Bypass `
+    -File "06-automacao\scripts\validate-links.ps1" `
+    -Root (Get-Location).Path `
+    -MarkdownPath "02-dossies\{{DOSSIER_ID}}"
+```
+
+O template não substitui a análise da fonte, a revisão humana, a confirmação de
+contratos externos, a homologação ou a promoção formal para conhecimento
+consolidado.
